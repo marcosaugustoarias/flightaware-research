@@ -76,6 +76,10 @@
       <Project>{85e571ca-83a2-41ed-9905-52690954a584}</Project>
       <Name>Flightaware.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Flightaware.Exceptions\Flightaware.Exceptions.csproj">
+      <Project>{e2d98ab4-5bfb-40c2-8068-e72af1d618ae}</Project>
+      <Name>Flightaware.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Research.Business\Research.Business.csproj">
       <Project>{b21d655a-bc24-417e-96be-975d8a41de0c}</Project>
       <Name>Research.Business</Name>

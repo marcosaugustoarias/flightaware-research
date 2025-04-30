@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Research.Business;
 using Research.Entities;
+using Flightaware.Exceptions;
 using Xunit;
 
 namespace UnitTest
@@ -28,11 +29,19 @@ namespace UnitTest
         [Fact]
         public void al_pasar_num_vuelo_invalido_debe_lanzar_flywhareexeption()
         {
+ 
+            // Arrange
             VueloManager vueloManager = new VueloManager();
-            VueloInfo vueloInfo = vueloManager.GetVueloInfo("XX0000", DateTime.Now);
 
+            // Act & Assert
+            var ex = Assert.Throws<FlightawareException>(() =>
+            {
+                vueloManager.GetVueloInfo("XX0000", DateTime.Now);
+            });
 
-            Assert.True(!string.IsNullOrWhiteSpace(vueloInfo.NumeroVuelo));
+            // Validación opcional del mensaje
+            Assert.Contains("Operator code XX is unknown", ex.Message);
+
         }
     }
 }
