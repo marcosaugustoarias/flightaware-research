@@ -1,0 +1,14 @@
+# Configuration files
+**/App.config
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+*.log
+
+# Compilados
+bin/
+obj/
+TestResults/
