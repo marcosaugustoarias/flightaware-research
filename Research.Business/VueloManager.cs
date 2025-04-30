@@ -20,6 +20,24 @@ namespace Research.Business
             return MapFlightDataToVueloInfo(flightData);
         }
 
+        private DateTime StringUtcToLocalDateTime(string utcDateTimeString, string timeZoneId)
+        {
+            // Parsear el string como fecha UTC
+            DateTime utcDateTime = DateTime.Parse(
+                utcDateTimeString,
+                null,
+                System.Globalization.DateTimeStyles.AdjustToUniversal
+            );
+
+            // Obtener la zona horaria deseada
+            TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+
+            // Convertir de UTC a la zona horaria local
+            DateTime localDateTime = TimeZoneInfo.ConvertTimeFromUtc(utcDateTime, timeZone);
+
+            return localDateTime;
+        }
+
         private VueloInfo MapFlightDataToVueloInfo(FlightData flightData)
         {
             var vuelo = flightData?.Flights?.FirstOrDefault();
@@ -32,7 +50,10 @@ namespace Research.Business
                 NumeroVuelo = vuelo.IdentIata,
                 Estado = vuelo.Status,
                 HoraEstimaArribo = vuelo.EstimatedOn?.ToString("u"),
-                HoraArribo = vuelo.ActualIn?.ToString("u")
+                HoraArribo = vuelo.ActualIn?.ToString("u"),
+                HoraEstimaArriboLocal = StringUtcToLocalDateTime(vuelo.EstimatedOn?.ToString("u"), "Argentina Standard Time"),
+                HoraArriboLocal = StringUtcToLocalDateTime(vuelo.ActualIn?.ToString("u"), "Argentina Standard Time")
+
             };
         }
     }

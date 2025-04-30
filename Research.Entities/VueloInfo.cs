@@ -12,5 +12,7 @@ namespace Research.Entities
         public string Estado { get; set; }
         public string HoraEstimaArribo { get; set; }
         public string HoraArribo { get; set; }
+        public DateTime HoraEstimaArriboLocal { get; set; }
+        public DateTime HoraArriboLocal { get; set; }
     }
 }

@@ -11,9 +11,6 @@ namespace Flightaware.Client
 
     public class FlightawareClient
     {
-        //private const string ApiKey = "BEvqW9sceeLy8Vpan6SfdqBFlNAxFJYg";
-        //private const string BaseUrl = "https://aeroapi.flightaware.com/aeroapi/flights";
-
         public FlightData GetFlightData(string idIata, DateTime date)
         {
             string apikey = FlightawareConfiguration.GetApiKey();
